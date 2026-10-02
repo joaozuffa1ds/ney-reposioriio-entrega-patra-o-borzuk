@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torneio de Alunos - Arcade</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <section id="menu" class="screen">
+    <div class="menu-card">
+      <p class="eyebrow">★ ARCADE ESCOLAR ★</p>
+      <h1>TORNEIO<br><span>DE ALUNOS</span></h1>
+      <p class="subtitle">Sobreviva às ondas de olhos invasores, suba de nível e monte um arsenal de armas orbitais.</p>
+      <div class="mode-grid">
+        <button class="mode-btn" data-mode="tournament"><strong>1. TORNEIO</strong><small>20 ondas • chefes a cada 10</small></button>
+        <button class="mode-btn" data-mode="survival"><strong>2. SOBREVIVÊNCIA</strong><small>Ondas infinitas • score</small></button>
+        <button class="mode-btn" data-mode="time"><strong>3. CONTRA O TEMPO</strong><small>90 segundos • score máximo</small></button>
+      </div>
+      <div class="controls">
+        <span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> mover</span>
+                <span><kbd>1-3</kbd> escolher item</span>
+        <span><kbd>P</kbd> pausar</span>
+      </div>
+      <p class="hint">As armas orbitam e disparam sozinhas. Monstros deixam XP verde e cura amarela. Relíquias são passivas.</p>
+    </div>
+  </section>
+
+  <section id="game-screen" class="game-screen hidden">
+    <header class="hud">
+      <div class="hud-block player-hud">
+        <span class="hud-label">HP</span>
+        <div class="bar"><div id="hp-fill" class="bar-fill hp"></div></div>
+        <span id="hp-text">100/100</span>
+      </div>
+      <div class="hud-center">
+        <div id="mode-label">TORNEIO</div>
+        <div id="stage-label">ONDA 1</div>
+      </div>
+      <div class="hud-block right">
+        <span class="hud-label">SCORE <b id="score">000000</b></span>
+        <span id="lives" class="lives">♥ ♥ ♥</span>
+        <span id="timer" class="timer hidden">90</span>
+      </div>
+    </header>
+
+    <div class="xp-panel">
+      <div class="xp-top"><span>NÍVEL <b id="level-text">1</b></span><span>XP <b id="xp-text">0/8</b></span></div>
+      <div class="xp-bar"><div id="xp-fill"></div></div>
+      <div class="slot-title">ARMAS AUTOMÁTICAS • 5 SLOTS</div><div id="slots" class="slots" aria-label="5 slots de armas"></div><div class="slot-title relic-title">RELÍQUIAS PASSIVAS • 5 SLOTS</div><div id="relic-slots" class="slots relic-slots" aria-label="5 slots de relíquias"></div>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="gameCanvas" width="960" height="540" aria-label="Jogo arcade Torneio de Alunos"></canvas>
+      <div id="pause-box" class="overlay hidden"><h2>PAUSADO</h2><p>Pressione <kbd>P</kbd> para continuar</p></div>
+      <div id="message-box" class="overlay hidden">
+        <h2 id="message-title"></h2><p id="message-text"></p><button id="message-button" class="arcade-button">JOGAR NOVAMENTE</button>
+      </div>
+      <div id="level-box" class="overlay level-overlay hidden">
+        <div class="level-card">
+          <div class="level-title">LEVEL UP!</div>
+          <div class="level-subtitle">ESCOLHA 1 ITEM • ARMAS: <span id="slot-count">1/5</span> • RELÍQUIAS: 5 SLOTS</div>
+          <div id="item-choices" class="item-choices"></div>
+          <div class="choose-help"><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> selecionar</div>
+        </div>
+      </div>
+      <div id="chest-box" class="overlay chest-overlay hidden">
+        <div class="level-card chest-card">
+          <div id="chest-title" class="chest-title">BAÚ DO BOSS!</div>
+          <div id="chest-subtitle" class="chest-subtitle">ESCOLHA QUAL ARMA VOCÊ QUER EVOLUIR • <span id="chest-slots">ARMAS EQUIPADAS 1/5</span></div>
+          <div id="chest-choices" class="item-choices"></div>
+          <div class="choose-help"><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> selecionar</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-panel">
+      <span id="skill-text">SKILL AUTOMÁTICA</span>
+      <div class="skill-bar"><div id="skill-fill"></div></div>
+      <span class="skill-help">A skill dispara automaticamente</span>
+    </div>
+
+    <footer class="game-footer">
+      <span>WASD: mover</span><span>1-3: item</span><span>P: pausar</span>
+      <button id="menu-button">MENU</button>
+    </footer>
+  </section>
+</main>
+<script src="game.js"></script>
+</body>
+</html>
